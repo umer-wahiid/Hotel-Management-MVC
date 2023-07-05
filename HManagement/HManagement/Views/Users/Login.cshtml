@@ -1,0 +1,168 @@
+﻿@model HManagement.Models.User
+
+@{
+    Layout = null;
+}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V16</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1
+
+    @Styles.Render("~/Content/Login/vendor/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css")
+    @Styles.Render("~/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css")
+    @Styles.Render("~/Content/Login/vendor/animate/animate.css")
+    @Styles.Render("~/Content/Login/vendor/css-hamburgers/hamburgers.min.css")
+    @Styles.Render("~/Content/Login/vendor/animsition/css/animsition.min.css")
+    @Styles.Render("~/Content/Login/vendor/select2/select2.min.css")
+    @Styles.Render("~/Content/Login/vendor/daterangepicker/daterangepicker.css")
+    @Styles.Render("~/Content/Login/css/util.css")
+    @Styles.Render("~/Content/Login/css/main.css")
+
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/Login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+</head>
+<body>
+
+
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/Content/Login/images/bg-01.jpg'); ">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41">
+                    Account Login
+                </span>
+                @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "login100-form validate-form p-b-33 p-t-5" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Email">
+                        @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "input100", name = "UEmail", type = "email", placeholder = "Your Email" } })
+                        @Html.ValidationMessageFor(model => model.UEmail, "", new { @class = "text-danger" })
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Email">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input100", name = "Pass", type = "password", placeholder = "Your Password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-32">
+                        <button type="submit" class="login100-form-btn">Login</button>
+                    </div>
+
+                }
+
+                <P>Don't Have An Account ?  @Html.ActionLink("Register", "SignUp", "Users")</P>
+
+                <!-- Display error messages -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/Login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login/js/main.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Login</title>
+    </head>
+    <body>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>User</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
+    </html>*@

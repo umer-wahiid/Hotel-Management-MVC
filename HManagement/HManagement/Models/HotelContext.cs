@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+
+namespace HManagement.Models
+{
+    public class HotelContext:DbContext
+    {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+    }
+}
