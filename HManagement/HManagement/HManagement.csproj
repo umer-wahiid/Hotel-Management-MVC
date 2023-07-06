@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -145,7 +146,24 @@
     <Compile Include="Migrations\202307032130145_addRooms.Designer.cs">
       <DependentUpon>202307032130145_addRooms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307051602452_addImageFile.cs" />
+    <Compile Include="Migrations\202307051602452_addImageFile.Designer.cs">
+      <DependentUpon>202307051602452_addImageFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307051714525_addImage.cs" />
+    <Compile Include="Migrations\202307051714525_addImage.Designer.cs">
+      <DependentUpon>202307051714525_addImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307051735363_RemoveImage.cs" />
+    <Compile Include="Migrations\202307051735363_RemoveImage.Designer.cs">
+      <DependentUpon>202307051735363_RemoveImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307051752057_ImagePath.cs" />
+    <Compile Include="Migrations\202307051752057_ImagePath.Designer.cs">
+      <DependentUpon>202307051752057_ImagePath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\HotelContext.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\User.cs" />
@@ -694,9 +712,12 @@
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Home\Room.cshtml" />
+    <Content Include="Views\Bookings\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -720,6 +741,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307032130145_addRooms.resx">
       <DependentUpon>202307032130145_addRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307051602452_addImageFile.resx">
+      <DependentUpon>202307051602452_addImageFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307051714525_addImage.resx">
+      <DependentUpon>202307051714525_addImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307051735363_RemoveImage.resx">
+      <DependentUpon>202307051735363_RemoveImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307051752057_ImagePath.resx">
+      <DependentUpon>202307051752057_ImagePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

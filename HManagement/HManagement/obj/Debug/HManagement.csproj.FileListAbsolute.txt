@@ -85,3 +85,7 @@ C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migration
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.csproj.GenerateResource.cache
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.AddRole.resources
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addRooms.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addImageFile.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addImage.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.RemoveImage.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.ImagePath.resources

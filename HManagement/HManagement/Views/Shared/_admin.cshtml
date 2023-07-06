@@ -111,7 +111,10 @@
             <div class="dropdown dropdown-profile">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <img src="~/Content/Admin/img/img3.jpg" class="wd-32 rounded-circle" alt="">
-                    <span class="logged-name"><span class="hidden-xs-down">Jane Doe</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+                    @if (Convert.ToString(Session["E"]) == "admin@admin.com")
+                    {
+                        <span class="logged-name"><span class="hidden-xs-down">@Session["N"]</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+                    }
                 </a>
                 <div class="dropdown-menu wd-200">
                     <ul class="list-unstyled user-profile-nav">
@@ -120,7 +123,8 @@
                         <li><a href=""><i class="icon ion-ios-download-outline"></i> Downloads</a></li>
                         <li><a href=""><i class="icon ion-ios-star-outline"></i> Favorites</a></li>
                         <li><a href=""><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
-                        <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                        @*<li><i class="icon ion-power"></i>Html.ActionLink("Logout", "Logout", "Users")</li>*@
                     </ul>
                 </div><!-- dropdown-menu -->
             </div><!-- dropdown -->
@@ -152,16 +156,19 @@
                             <span>Dashboard</span>
                         </a>
                     </li><!-- nav-item -->
-                    <li class="nav-item">
-                        <a href="" class="nav-link with-sub">
-                            <i class="icon ion-ios-gear-outline"></i>
-                            <span>Rooms</span>
-                        </a>
-                        <ul class="nav-sub">
-                            <li class="nav-item">@Html.ActionLink("Create", "Create", "Rooms",null, new { @class = "nav-link"})</li>
-                            <li class="nav-item">@Html.ActionLink("View", "Index", "Rooms",null,new { @class="nav-link"})</li>
-                        </ul>
-                    </li><!-- nav-item -->
+                    @if (Convert.ToInt32(Session["R"]) != 0)
+                    {
+                        <li class="nav-item">
+                            <a href="" class="nav-link with-sub">
+                                <i class="icon ion-ios-gear-outline"></i>
+                                <span>Rooms</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li class="nav-item">@Html.ActionLink("Create", "Create", "Rooms",null, new { @class = "nav-link"})</li>
+                                <li class="nav-item">@Html.ActionLink("View", "Index", "Rooms",null,new { @class="nav-link"})</li>
+                            </ul>
+                        </li><!-- nav-item -->
+                    }
                     <li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-filing-outline"></i>
@@ -387,7 +394,6 @@
         </div><!-- tab-content -->
     </div><!-- am-sideleft -->
 
-    <div class="am-mainpanel">
 
 
 

@@ -11,7 +11,15 @@ namespace HManagement.Controllers
         // GET: Admins
         public ActionResult Index()
         {
-            return View();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            if (Convert.ToInt32(Session["R"]) != 0){
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

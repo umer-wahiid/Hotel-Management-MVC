@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
+
 <div class="am-pagetitle">
     <h5 class="am-title">Add Room</h5>
     <form id="searchBar" class="search-bar" action="index.html">
@@ -14,62 +15,88 @@
         <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
     </form><!-- search-bar -->
 </div><!-- am-pagetitle -->
-<div class="am-pagebody">
-    <div>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RoomNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.RoomNo, "", new { @class = "text-danger" })
+
+    <div class="am-mainpanel">
+        <div class="am-pagebody">
+
+            <div class="card pd-20 pd-sm-40">
+                <h6 class="card-body-title">Top Label Layout</h6>
+                <p class="mg-b-20 mg-sm-b-30">A form with a label on top of each form control.</p>
+                <div>
+                    @using (Html.BeginForm("Create","Rooms",FormMethod.Post,new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-layout">
+                    <div class="row mg-b-25">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RoomNo, htmlAttributes: new { @class = "form-control-label" })
+                                @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RoomNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group mg-b-10-force">
+                                @Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "form-control-label" })
+                                @Html.DropDownList("RoomType", new SelectList(new[]
+                                {
+                                    new { Value = "Single", Text = "Single Room" },
+                                    new { Value = "Double", Text = "Double Room" },
+                                    new { Value = "Suite", Text = "Suite" }
+                                }, "Value", "Text"), "-- Select Room Type --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger " })
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "form-control-label" })
+                                @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                            </div>
+                        </div><!-- col-4 -->
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-control-label" })
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Availability, htmlAttributes: new { @class = "form-control-label" })
+                                @Html.DropDownList("Availability", new SelectList(new[]
+                                   {
+                                       new { Value = "Available", Text = "Available" },
+                                       new { Value = "Unavailable", Text = "Unavailable" }
+                                   }, "Value", "Text"), "-- Select Room Type --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "form-control-label" })
+                                <input type="file" name="ImageFile" required class="single-input">
+                                @*@Html.EditorFor(model => model.Availability, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Availability, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Availability, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                    <div class="form-layout-footer">
+                        <input type="submit" class="btn btn-info mg-r-5" value="Submit">
+                        <input type="reset" class="btn btn-secondary" value="Reset">
+                    </div><!-- form-layout-footer -->
+                </div><!-- form-layout -->
+                    }
+                    </div><!-- card -->
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        }
 
-    </div>
-</div>
+                </div><!-- am-pagebody -->

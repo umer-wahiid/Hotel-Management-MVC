@@ -5,55 +5,74 @@
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="am-pagetitle">
+    <h5 class="am-title">Room's Detail</h5>
+    <form id="searchBar" class="search-bar" action="index.html">
+        <div class="form-control-wrapper">
+            <input type="search" class="form-control bd-0" placeholder="Search...">
+        </div><!-- form-control-wrapper -->
+        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
+    </form><!-- search-bar -->
+</div><!-- am-pagetitle -->
+<div class="am-mainpanel">
+    <div class="am-pagebody">
 
-<div>
-    <h4>Room</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomNo)
-        </dt>
+        <div>
+            <h4>Room</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomNo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.RoomNo)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomType)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomType)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Capacity)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Availability)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Availability)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Availability)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Availability)
+                </dd>
+                
+                <dt>
+                    Room's Image
+                </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <dd>
+                    <img src="@Url.Content(Model.image_path)" width="150" height="140">
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.RoomId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        </div>

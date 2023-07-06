@@ -52,8 +52,6 @@
     @Styles.Render("~/Content/css/magnific-popup.css")
     @Styles.Render("~/Content/css/slicknav.min.css")
     @Styles.Render("~/Content/css/style.css")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
 </head>
 
@@ -90,20 +88,10 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li>
-                    <a href="./pages.html">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">News</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Rooms", "Rooms", "Home")</li>
+                <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                <li>@Html.ActionLink("About Us", "Contact", "Home")</li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -142,7 +130,6 @@
                         @if (Session["id"] != null)
                         {
                             <div class="language-option">
-                                @*<img src="~/Content/img/flag.jpg" alt="">*@
                                 <span>@Session["N"]<i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
@@ -177,20 +164,11 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li><a href="./rooms.html">Rooms</a></li>
-                                    <li><a href="./about-us.html">About Us</a></li>
-                                    <li>
-                                        <a href="./pages.html">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="./room-details.html">Room Details</a></li>
-                                            <li><a href="./blog-details.html">Blog Details</a></li>
-                                            <li><a href="#">Family Room</a></li>
-                                            <li><a href="#">Premium Room</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="./blog.html">News</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
+                                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Rooms", "Room", "Home")</li>
+                                    <li>@Html.ActionLink("Gallery", "Room", "Home")</li>
+                                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">

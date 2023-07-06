@@ -20,38 +20,6 @@
                     <a href="#" class="primary-btn">Discover Now</a>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                <div class="booking-form">
-                    <h3>Booking Your Hotel</h3>
-                    <form action="#">
-                        <div class="check-date">
-                            <label for="date-in">Check In:</label>
-                            <input type="text" class="date-input" id="date-in">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="check-date">
-                            <label for="date-out">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="select-option">
-                            <label for="guest">Guests:</label>
-                            <select id="guest">
-                                <option value="">2 Adults</option>
-                                <option value="">3 Adults</option>
-                            </select>
-                        </div>
-                        <div class="select-option">
-                            <label for="room">Room:</label>
-                            <select id="room">
-                                <option value="">1 Room</option>
-                                <option value="">2 Room</option>
-                            </select>
-                        </div>
-                        <button type="submit">Check Availability</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
     <div class="hero-slider owl-carousel">
@@ -179,7 +147,7 @@
 <section class="hp-room-section">
     <div class="container-fluid">
         <div class="hp-room-items">
-            <div class="row">
+            <div class="row" style="display:flex;justify-content:center;align-itm:center;">
                 <div class="col-lg-3 col-md-6">
                     <div class="hp-room-item set-bg" data-setbg="/Content/img/room/room-b1.jpg">
                         <div class="hr-text">
@@ -205,14 +173,15 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                            @Html.ActionLink("Details", "Room", "Home", new { rm = "Double" }, new { @class = "primary-btn" })
+                            @*<a href="#" class="primary-btn">More Details</a>*@
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="hp-room-item set-bg" data-setbg="/Content/img/room/room-b2.jpg">
                         <div class="hr-text">
-                            <h3>Premium King Room</h3>
+                            <h3>Suite</h3>
                             <h2>159$<span>/Pernight</span></h2>
                             <table>
                                 <tbody>
@@ -234,14 +203,15 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                            @Html.ActionLink("Details", "Room", "Home", new { rm = "Suite" }, new { @class = "primary-btn" })
+                            @*<a href="#" class="primary-btn">More Details</a>*@
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="hp-room-item set-bg" data-setbg="/Content/img/room/room-b3.jpg">
                         <div class="hr-text">
-                            <h3>Deluxe Room</h3>
+                            <h3>Single Room</h3>
                             <h2>198$<span>/Pernight</span></h2>
                             <table>
                                 <tbody>
@@ -263,36 +233,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="/Content/img/room/room-b4.jpg">
-                        <div class="hr-text">
-                            <h3>Family Room</h3>
-                            <h2>299$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                            @Html.ActionLink("Details","Room", "Home", new { rm = "Single" }, new { @class = "primary-btn" })
+@*                            <a href="#" class="primary-btn">More Details</a>*@
                         </div>
                     </div>
                 </div>

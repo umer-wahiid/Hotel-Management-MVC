@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using HManagement.Models;
 
+
 namespace HManagement.Controllers
 {
     public class UsersController : Controller
@@ -22,12 +23,16 @@ namespace HManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(User user)
         {
-            HC.Users.Add(user);
-            HC.SaveChanges();
-            //TempData["rtrn"] = "< script >alert('Data Inserted Successfully !!')</ script >";
-            TempData["rtrn"] = "<script>alert('Data Inserted Successfully !!')</script>";
-            return RedirectToAction("Index", "Home");
-        }
+            if (ModelState.IsValid)
+            {
+                HC.Users.Add(user);
+                HC.SaveChanges();
+                //TempData["rtrn"] = "< script >alert('Data Inserted Successfully !!')</ script >";
+                TempData["rtrn"] = "<script>alert('Data Inserted Successfully !!')</script>";
+                return RedirectToAction("Index", "Home");
+            }
+            return View(user);
+            }
         
         public ActionResult Edit(int? id)
         {
@@ -47,16 +52,17 @@ namespace HManagement.Controllers
             }
 
             return View(user);
-            //TempData["rtrn"] = "< script >alert('Data Inserted Successfully !!')</ script >";
-            //TempData["rtrn"] = "<script>alert('Data Inserted Successfully !!')</script>";
-            //return RedirectToAction("Index", "Home");
         }
 
-
+        //[OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Logout()
         {
+
             Session.Abandon();
-            return RedirectToAction("Index","Home");
+            Session.Clear();
+
+            // Redirect to the home page with a random query parameter
+            return RedirectToAction("Index", "Home", new { rnd = DateTime.Now.Ticks });
         }
 
 
@@ -79,10 +85,16 @@ namespace HManagement.Controllers
                     Session["id"] = use.UserId;
                     Session["N"] = use.UName;
                     Session["E"] = use.UEmail;
+                    Session["R"] = use.Role;
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    TempData["wel"] = "<script>alert('Welcome !!')</script>";
+                    Session["id"] = use.UserId;
+                    Session["N"] = use.UName;
+                    Session["E"] = use.UEmail;
+                    Session["R"] = use.Role;
                     return RedirectToAction("Index", "Admins");
                 }
             }

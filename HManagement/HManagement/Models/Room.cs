@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HManagement.Models
 {
@@ -26,6 +27,13 @@ namespace HManagement.Models
         [Required]
         public int Price { get; set; }
         
+
         public string Availability { get; set; }
+
+        [Display(Name = "Choose Image")]
+        public string image_path { get; set; }
+        
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
