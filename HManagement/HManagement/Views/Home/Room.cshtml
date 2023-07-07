@@ -54,7 +54,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                            @*<a href="#" class="primary-btn">Book Now!</a>*@
+                            @Html.ActionLink("Book Now !", "Create", "Bookings", new { id = item.RoomId }, new { @class = "primary-btn" })
                         </div>
                     </div>
                 </div>

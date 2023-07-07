@@ -14,6 +14,12 @@ namespace HManagement.Controllers
 
         HotelContext HC = new HotelContext();
         // GET: Users
+        public ActionResult Index()
+        {
+            var user = HC.Users.Where(a => a.Role == 0);
+            return View(user.ToList());
+        }
+
         public ActionResult SignUp()
         {
             return View();
@@ -57,11 +63,8 @@ namespace HManagement.Controllers
         //[OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Logout()
         {
-
             Session.Abandon();
             Session.Clear();
-
-            // Redirect to the home page with a random query parameter
             return RedirectToAction("Index", "Home", new { rnd = DateTime.Now.Ticks });
         }
 

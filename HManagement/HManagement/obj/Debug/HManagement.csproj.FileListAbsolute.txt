@@ -89,3 +89,6 @@ C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migration
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addImage.resources
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.RemoveImage.resources
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.ImagePath.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addBooking.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addUserId.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addImage1.resources

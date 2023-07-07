@@ -17,7 +17,14 @@ namespace HManagement.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            return View(db.Bookings.ToList());
+            if (Convert.ToInt32(Session["R"]) != 0)
+            {
+                return View(db.Bookings.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
 
         // GET: Bookings/Details/5
@@ -36,9 +43,22 @@ namespace HManagement.Controllers
         }
 
         // GET: Bookings/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
+            if (Session["id"] != null)
+            {
+                var room = db.Rooms.FirstOrDefault(a => a.RoomId == id);
+                ViewBag.RT = room.RoomType;
+                ViewBag.RN = room.RoomNo;
+                ViewBag.RP = room.Price;
+                ViewBag.RI = room.image_path;
+                ViewBag.UI = Session["id"];
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
 
         // POST: Bookings/Create
@@ -46,13 +66,14 @@ namespace HManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookingId,Nights,CheckIn,CheckOut,RoomType,RoomNo,Total")] Booking booking)
+        public ActionResult Create([Bind(Include = "BookingId,Nights,CheckIn,CheckOut,RoomType,RoomNo,Confirm,Payment,Total,UserId,Image")] Booking booking)
         {
             if (ModelState.IsValid)
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Bookings", "Home");
+                //return RedirectToAction("Index");
             }
 
             return View(booking);
@@ -78,7 +99,7 @@ namespace HManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookingId,Nights,CheckIn,CheckOut,RoomType,RoomNo,Total")] Booking booking)
+        public ActionResult Edit([Bind(Include = "BookingId,Nights,CheckIn,CheckOut,RoomType,RoomNo,Confirm,Payment,Total")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +109,79 @@ namespace HManagement.Controllers
             }
             return View(booking);
         }
+
+
+
+        // GET: Bookings/Delete/5
+        public ActionResult EditPayment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPayment(int id)
+        {
+            var booking = db.Bookings.Find(id);
+            if (booking != null)
+            {
+                booking.Payment = "Online";
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
+        }
+        
+        // GET: Bookings/Delete/5
+        public ActionResult EditConfirm(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditConfirm(int id)
+        {
+            var booking = db.Bookings.Find(id);
+            if (booking != null)
+            {
+                booking.Confirm = "Confirmed";
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Bookings/Delete/5
         public ActionResult Delete(int? id)

@@ -23,6 +23,21 @@ namespace HManagement.Controllers
         {
             return View();
         }
+        public ActionResult Gallery()
+        {
+            return View();
+        }
+       
+        public ActionResult Bookings()
+        {
+            var id = Convert.ToInt32(Session["id"]);
+            var booking = db.Bookings.Where(a=> a.UserId == id).ToList();
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
 
         public ActionResult Contact()
         {
@@ -33,12 +48,12 @@ namespace HManagement.Controllers
         {
             if (rm != null)
             {
-                var room = db.Rooms.Where(a=>a.RoomType==rm).ToList();
+                var room = db.Rooms.Where(a=>a.RoomType==rm && a.Availability=="Available").ToList();
                 return View(room);
             }
             else
             {
-                var room = db.Rooms.ToList();
+                var room = db.Rooms.Where(a =>a.Availability == "Available").ToList();
                 return View(room);
             }
         }

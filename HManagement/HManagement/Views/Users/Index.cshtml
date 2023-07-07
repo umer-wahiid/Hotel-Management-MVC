@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HManagement.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+<div class="am-pagetitle">
+    <h5 class="am-title">Users</h5>
+    <form id="searchBar" class="search-bar" action="index.html">
+        <div class="form-control-wrapper">
+            <input type="search" class="form-control bd-0" placeholder="Search...">
+        </div><!-- form-control-wrapper -->
+        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
+    </form><!-- search-bar -->
+</div><!-- am-pagetitle -->
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+
+        <div class="card pd-20 pd-sm-40">
+            <h3 class="card-body-title">Users</h3>
+
+            <div class="table-wrapper">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UEmail)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Password)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CPassword)
+                            </th>*@
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Role)
+                            </th>*@
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UEmail)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CPassword)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Role)
+                                </td>*@
+                            @* <td>*@
+                            @*@Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+                                @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id=item.UserId })*@
+                            @*</td>*@
+                        </tr>
+                    }
+
+                </table>
+            </div><!-- table-wrapper -->
+        </div><!-- card -->
+
+
+    </div><!-- am-pagebody -->

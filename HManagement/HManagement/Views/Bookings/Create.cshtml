@@ -5,12 +5,110 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
+
+
+<!-- Blog Details Section Begin -->
+<section class="blog-details-section" style="padding-bottom:50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="blog-details-text">
+                    <div class="leave-comment">
+                        <h4>Book Your Room</h4>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "comment-form" }))
 {
     @Html.AntiForgeryToken()
-    
+
+                    <div class="row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="hidden" id="input1" value="@ViewBag.RP">
+
+                        <div class="col-lg-6">
+                            @*@Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control", placeholder = "Room Type" } })*@
+                            @Html.TextBox("RoomType", (string)ViewBag.RT, new { @class = "form-control", placeholder = "Room Type", @readonly = "readonly" })
+                            @*@Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control", placeholder = "Room Type" } })*@
+                            @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control", placeholder = "Nights", id = "input2" } })
+                            @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @class = "form-control", placeholder = "Check In Date", type = "date", id = "startDate" } })
+                            @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @class = "form-control", placeholder = "Check Out Date", type = "date", @readonly = "readonly", id = "endDate" } })
+                            @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.TextBox("RoomNo", (int?)ViewBag.RN, new { @class = "form-control", placeholder = "Room Number", @readonly = "readonly" })
+                            @*                                @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Room Number" } })*@
+                            @Html.ValidationMessageFor(model => model.RoomNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @*@Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control", placeholder = "Payment" } })*@
+                            @Html.DropDownListFor(model => model.Payment, new SelectList(new[]
+                                {
+                                    new SelectListItem { Text = "Online", Value = "Online" },
+                                    new SelectListItem { Text = "On Arrival", Value = "On Arrival" }
+                                }, "Value", "Text"), "Select Payment",new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Payment, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", placeholder = "Total Price", @readonly = "readonly", id = "input3" } })
+                            @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.TextBox("Confirm", "Not Confirm", new { @class = "form-control", placeholder = "Confirm", @readonly = "readonly", type = "hidden" })
+@*                            @Html.EditorFor(model => model.Confirm, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirmation" } })*@
+                            @Html.ValidationMessageFor(model => model.Confirm, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.TextBox("Image", (string)ViewBag.RI, new { @class = "form-control", placeholder = "Confirm", @readonly = "readonly", type = "hidden" })
+@*                            @Html.EditorFor(model => model.Confirm, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirmation" } })*@
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.TextBox("UserId", (int?)ViewBag.UI, new { @class = "form-control", placeholder = "Confirm", @readonly = "readonly", type = "hidden" })
+@*                            @Html.EditorFor(model => model.Confirm, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirmation" } })*@
+                            @Html.ValidationMessageFor(model => model.Confirm, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <input type="submit" value="Confirm Booking" class="site-btn" />
+                            @*<input type="text" placeholder="Website">
+            <textarea placeholder="Messages"></textarea>
+            <button type="submit" class="site-btn">Send Message</button>*@
+                        </div>
+                    </div>
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Section End -->
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
         <h4>Booking</h4>
         <hr />
@@ -56,6 +154,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Confirm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Confirm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Confirm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Payment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
@@ -73,4 +187,4 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@

@@ -37,10 +37,10 @@
                                 @Html.DisplayNameFor(model => model.Price)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Availability)
+                                Image
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.image_path)
+                                @Html.DisplayNameFor(model => model.Availability)
                             </th>
                             <th></th>
                         </tr>
@@ -62,15 +62,22 @@
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Availability)
-                                </td>
-                                <td>
                                     <img src="@Url.Content(item.image_path)" class="rounded-circle" height="40" width="40">
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                                    @if (item.Availability == "Available")
+                                    {
+                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "btn btn-warning" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "btn btn-danger" })
+                                    }
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
                                     @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })*@
                                 </td>
                             </tr>
                         }

@@ -1,0 +1,109 @@
+﻿@model HManagement.Models.Booking
+
+@{
+    ViewBag.Title = "EditPayment";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div class="am-pagetitle">
+    <h5 class="am-title">Confirm Payment</h5>
+    <form id="searchBar" class="search-bar" action="index.html">
+        <div class="form-control-wrapper">
+            <input type="search" class="form-control bd-0" placeholder="Search...">
+        </div><!-- form-control-wrapper -->
+        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
+    </form><!-- search-bar -->
+</div><!-- am-pagetitle -->
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+
+        <h3>Are you sure that the Payment is received?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.BookingId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BookingId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nights)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nights)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CheckIn)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CheckIn)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CheckOut)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CheckOut)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Confirm)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Confirm)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Payment)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Payment)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Received" class="btn btn-default" /> |
+                    @Html.ActionLink("Not Received", "Index",new { @class= "btn btn-default" })
+                </div>
+            }
+        </div>
+        </div>

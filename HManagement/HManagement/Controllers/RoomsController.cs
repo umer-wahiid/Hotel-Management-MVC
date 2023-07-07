@@ -130,6 +130,58 @@ namespace HManagement.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        // GET: Rooms/Delete/5
+        public ActionResult EditAvailability(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+            return View(room);
+        }
+
+        // POST: Rooms/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAvailability(int id)
+        {
+            var room = db.Rooms.Find(id);
+            if (room != null)
+            {
+                if (room.Availability == "Available")
+                {
+                    room.Availability = "Unavailable";
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    room.Availability = "Available";
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            return HttpNotFound();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

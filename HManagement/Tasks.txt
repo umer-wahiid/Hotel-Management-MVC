@@ -1,0 +1,20 @@
+Only ADMIN...
+	Can Add Rooms
+	Can Make Rooms Available/Unavailable
+	Can View Bookings
+	Can Confirm Bookings
+	Can Confirm Payment
+	Can View Users
+
+
+Users...
+	Can Register
+	Can View Rooms
+	Can Filter Rooms By Single,Double,Suite
+	Can Book Rooms
+	Can Select Check In Date
+	Can View Their Bookings
+	Can Select Payment Type...
+		If user selects online, It will make the payment status received
+		If user selects On Arrival, Payment status will pending
+	Can View Booking's Confirmation

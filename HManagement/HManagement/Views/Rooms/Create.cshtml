@@ -21,8 +21,7 @@
         <div class="am-pagebody">
 
             <div class="card pd-20 pd-sm-40">
-                <h6 class="card-body-title">Top Label Layout</h6>
-                <p class="mg-b-20 mg-sm-b-30">A form with a label on top of each form control.</p>
+                <h6 class="card-body-title">Add Room</h6>
                 <div>
                     @using (Html.BeginForm("Create","Rooms",FormMethod.Post,new { enctype = "multipart/form-data" }))
                                 {
@@ -73,14 +72,14 @@
                                    {
                                        new { Value = "Available", Text = "Available" },
                                        new { Value = "Unavailable", Text = "Unavailable" }
-                                   }, "Value", "Text"), "-- Select Room Type --", new { @class = "form-control" })
+                                   }, "Value", "Text"), "-- Select Availability --", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
                             </div>
                         </div><!-- col-4 -->
                         <div class="col-lg-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "form-control-label" })
-                                <input type="file" name="ImageFile" required class="single-input">
+                                <input type="file" name="ImageFile" required class="single-input form-control">
                                 @*@Html.EditorFor(model => model.Availability, new { htmlAttributes = new { @class = "form-control" } })*@
                                 @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
                             </div>

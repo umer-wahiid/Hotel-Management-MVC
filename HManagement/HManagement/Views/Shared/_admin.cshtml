@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -170,6 +174,18 @@
                         </li><!-- nav-item -->
                     }
                     <li class="nav-item">
+                        <a href="/Bookings/Index/" class="nav-link">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Bookings</span>
+                        </a>
+                    </li><!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="/Users/Index/" class="nav-link">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Users</span>
+                        </a>
+                    </li><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-filing-outline"></i>
                             <span>UI Elements</span>
@@ -188,8 +204,8 @@
                             <li class="nav-item"><a href="spinners.html" class="nav-link">Spinners</a></li>
                             <li class="nav-item"><a href="typography.html" class="nav-link">Typography</a></li>
                         </ul>
-                    </li><!-- nav-item -->
-                    <li class="nav-item">
+                    </li>--><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-analytics-outline"></i>
                             <span>Charts</span>
@@ -201,8 +217,8 @@
                             <li class="nav-item"><a href="chart-rickshaw.html" class="nav-link">Rickshaw</a></li>
                             <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Sparkline</a></li>
                         </ul>
-                    </li><!-- nav-item -->
-                    <li class="nav-item">
+                    </li>--><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-navigate-outline"></i>
                             <span>Maps</span>
@@ -211,8 +227,8 @@
                             <li class="nav-item"><a href="map-google.html" class="nav-link">Google Maps</a></li>
                             <li class="nav-item"><a href="map-vector.html" class="nav-link">Vector Maps</a></li>
                         </ul>
-                    </li><!-- nav-item -->
-                    <li class="nav-item">
+                    </li>--><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-list-outline"></i>
                             <span>Tables</span>
@@ -221,8 +237,8 @@
                             <li class="nav-item"><a href="table-basic.html" class="nav-link">Basic Table</a></li>
                             <li class="nav-item"><a href="table-datatable.html" class="nav-link">Data Table</a></li>
                         </ul>
-                    </li><!-- nav-item -->
-                    <li class="nav-item">
+                    </li>--><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-bookmarks-outline"></i>
                             <span>Pages</span>
@@ -233,13 +249,13 @@
                             <li class="nav-item"><a href="page-signup.html" class="nav-link">Signup Page</a></li>
                             <li class="nav-item"><a href="page-notfound.html" class="nav-link">404 Page Not Found</a></li>
                         </ul>
-                    </li><!-- nav-item -->
-                    <li class="nav-item">
+                    </li>--><!-- nav-item -->
+                    <!--<li class="nav-item">
                         <a href="widgets.html" class="nav-link">
                             <i class="icon ion-ios-briefcase-outline"></i>
                             <span>Widgets</span>
                         </a>
-                    </li><!-- nav-item -->
+                    </li>--><!-- nav-item -->
                 </ul>
             </div><!-- #mainMenu -->
             <div id="emailMenu" class="tab-pane">

@@ -1,0 +1,92 @@
+﻿@model HManagement.Models.Room
+
+@{
+    ViewBag.Title = "EditAvailability";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div class="am-pagetitle">
+    <h5 class="am-title">Room's Availability</h5>
+    <form id="searchBar" class="search-bar" action="index.html">
+        <div class="form-control-wrapper">
+            <input type="search" class="form-control bd-0" placeholder="Search...">
+        </div><!-- form-control-wrapper -->
+        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
+    </form><!-- search-bar -->
+</div><!-- am-pagetitle -->
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+
+        <h3>Are you sure you want to Update the Availability?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Capacity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Availability)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Availability)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.image_path)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.image_path)
+                </dd>
+
+            </dl>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (Model.Availability == "Available")
+            {
+                    <input type="submit" value="Unavailable" class="btn btn-default" /> 
+            }
+            else
+            {
+                    <input type="submit" value="Available" class="btn btn-default" /> 
+            }|
+            @Html.ActionLink("Back To List", "Index", new { @class = "btn btn-default" })
+        </div>
+            }
+        </div>
+    </div>

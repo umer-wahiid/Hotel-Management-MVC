@@ -26,6 +26,10 @@
             </div>
         </div>
         <div class="container body-content">*@
+@{ 
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -127,23 +131,23 @@
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                             <a href="#" class="bk-btn">Booking Now</a>
-                        @if (Session["id"] != null)
-                        {
-                            <div class="language-option">
-                                <span>@Session["N"]<i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
-                                        <li>@Html.ActionLink("Edit", "Edit", "Users", new { id = Session["id"] }, null)</li>
-                                    </ul>
+                            @if (Session["id"] != null)
+                            {
+                                <div class="language-option">
+                                    <span>@Session["N"]<i class="fa fa-angle-down"></i></span>
+                                    <div class="flag-dropdown">
+                                        <ul>
+                                            <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                                            <li>@Html.ActionLink("Edit", "Edit", "Users", new { id = Session["id"] }, null)</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
                             @if (Session["id"] == null)
                             {
-                        <div class="language-option">
-                                <span>@Html.ActionLink("Login", "Login", "Users")</span>
-                        </div>
+                                <div class="language-option">
+                                    <span style="color:black;">@Html.ActionLink("Login", "Login", "Users" ,null, new { style = "color: black;" })</span>
+                                </div>
                             }
                         </div>
                     </div>
@@ -165,10 +169,26 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Rooms", "Room", "Home")</li>
-                                    <li>@Html.ActionLink("Gallery", "Room", "Home")</li>
+                                    <li>@Html.ActionLink("Rooms", "Room", "Home")
+                                        <ul class="dropdown">
+                                            <li>
+                                                @Html.ActionLink("Single", "Room", "Home", new { rm = "Single" },null)
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Double", "Room", "Home", new { rm = "Double" }, null)
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Suite", "Room", "Home", new { rm = "Suite" }, null)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
                                     <li>@Html.ActionLink("About Us", "About", "Home")</li>
                                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    @if (Session["id"] != null)
+                                    {
+                                        <li>@Html.ActionLink("My Bookings", "Bookings", "Home")</li>
+                                    }
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
@@ -265,17 +285,48 @@
     </div>
     <!-- Search model end -->
     <!-- Js Plugins -->
-        @Scripts.Render("~/Content/js/jquery-3.3.1.min.js")
-        @Scripts.Render("~/Content/js/bootstrap.min.js")
-        @Scripts.Render("~/Content/js/jquery.magnific-popup.min.js")
-        @Scripts.Render("~/Content/js/jquery.nice-select.min.js")
-        @Scripts.Render("~/Content/js/jquery-ui.min.js")
-        @Scripts.Render("~/Content/js/jquery.slicknav.js")
-        @Scripts.Render("~/Content/js/owl.carousel.min.js")
-        @Scripts.Render("~/Content/js/main.js")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Content/js/jquery-3.3.1.min.js")
+    @Scripts.Render("~/Content/js/bootstrap.min.js")
+    @Scripts.Render("~/Content/js/jquery.magnific-popup.min.js")
+    @Scripts.Render("~/Content/js/jquery.nice-select.min.js")
+    @Scripts.Render("~/Content/js/jquery-ui.min.js")
+    @Scripts.Render("~/Content/js/jquery.slicknav.js")
+    @Scripts.Render("~/Content/js/owl.carousel.min.js")
+    @Scripts.Render("~/Content/js/main.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("https://code.jquery.com/jquery-3.6.0.min.js")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            // Bind change event to the input boxes
+            $('#input2').on('change', function () {
+                // Get the values of the input boxes
+                var value1 = parseFloat($('#input1').val());
+                var value2 = parseFloat($('#input2').val());
+
+                // Calculate the multiplication result
+                var result = value1 * value2;
+
+                // Display the result
+                $('#input3').val(result);
+                //console.log(result);
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('#startDate').on('change', function () {
+                var value2 = parseFloat($('#input2').val());
+                var startDate = new Date($('#startDate').val());
+                var endDate = new Date(startDate);
+                endDate.setDate(startDate.getDate() + value2);
+
+                var endDateString = endDate.toISOString().split('T')[0];
+                $('#endDate').val(endDateString);
+            });
+        });
+    </script>
 </body>
 
 </html>

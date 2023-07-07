@@ -162,6 +162,18 @@
     <Compile Include="Migrations\202307051752057_ImagePath.Designer.cs">
       <DependentUpon>202307051752057_ImagePath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307061341136_addBooking.cs" />
+    <Compile Include="Migrations\202307061341136_addBooking.Designer.cs">
+      <DependentUpon>202307061341136_addBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307061618452_addUserId.cs" />
+    <Compile Include="Migrations\202307061618452_addUserId.Designer.cs">
+      <DependentUpon>202307061618452_addUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307061942148_addImage1.cs" />
+    <Compile Include="Migrations\202307061942148_addImage1.Designer.cs">
+      <DependentUpon>202307061942148_addImage1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\HotelContext.cs" />
@@ -714,6 +726,14 @@
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Home\Room.cshtml" />
     <Content Include="Views\Bookings\Create.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
+    <Content Include="Views\Bookings\EditPayment.cshtml" />
+    <Content Include="Views\Bookings\EditConfirm.cshtml" />
+    <Content Include="Views\Bookings\Delete.cshtml" />
+    <Content Include="Views\Rooms\EditAvailability.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Home\Bookings.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -753,6 +773,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307051752057_ImagePath.resx">
       <DependentUpon>202307051752057_ImagePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307061341136_addBooking.resx">
+      <DependentUpon>202307061341136_addBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307061618452_addUserId.resx">
+      <DependentUpon>202307061618452_addUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307061942148_addImage1.resx">
+      <DependentUpon>202307061942148_addImage1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
