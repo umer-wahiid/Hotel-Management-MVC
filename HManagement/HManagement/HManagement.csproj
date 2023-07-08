@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BookingsController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -174,8 +175,13 @@
     <Compile Include="Migrations\202307061942148_addImage1.Designer.cs">
       <DependentUpon>202307061942148_addImage1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307072112419_addContact.cs" />
+    <Compile Include="Migrations\202307072112419_addContact.Designer.cs">
+      <DependentUpon>202307072112419_addContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\HotelContext.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\User.cs" />
@@ -734,6 +740,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\Bookings.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -782,6 +790,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307061942148_addImage1.resx">
       <DependentUpon>202307061942148_addImage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307072112419_addContact.resx">
+      <DependentUpon>202307072112419_addContact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

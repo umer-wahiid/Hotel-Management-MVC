@@ -52,7 +52,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="room-item">
                     <div class="ri-text" style="border:none;">
-                            <table style="margin-top:50px;">
+                        <table style="margin-top:50px;">
                             <tbody>
                                 <tr>
                                     <td class="r-o">Check In:</td>
@@ -64,12 +64,21 @@
                                 </tr>
                             </tbody>
                         </table>
-                        @if (item.Confirm=="Not Confirm") {
-                        <h6>Status :  Pending</h6>
+                        @if (item.Confirm == "Not Confirm")
+                        {
+                    <h6>Status :  Pending                @Html.ActionLink("Cancel", "Bookings", "Home", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;margin-left:20px;margin-bottom:5px;" })</h6>
                         }
-                        else{
-                        <h6>Status :  @item.Confirm</h6>
+                        else
+                        {
+                    <h6>Status :  @item.Confirm               </h6>
                         }
+                        @*<tr>
+                            <td>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Cancel", "Bookings", "Home", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;" })
+                            </td>
+                        </tr>*@
                     </div>
                 </div>
             </div>

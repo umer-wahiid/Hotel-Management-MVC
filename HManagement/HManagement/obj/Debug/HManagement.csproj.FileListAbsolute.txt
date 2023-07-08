@@ -92,3 +92,4 @@ C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migration
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addBooking.resources
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addUserId.resources
 C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addImage1.resources
+C:\Users\pc\source\repos\HManagement\HManagement\obj\Debug\HManagement.Migrations.addContact.resources

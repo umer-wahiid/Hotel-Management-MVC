@@ -7,12 +7,6 @@
 
 <div class="am-pagetitle">
     <h5 class="am-title">Bookings</h5>
-    <form id="searchBar" class="search-bar" action="index.html">
-        <div class="form-control-wrapper">
-            <input type="search" class="form-control bd-0" placeholder="Search...">
-        </div><!-- form-control-wrapper -->
-        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
-    </form><!-- search-bar -->
 </div><!-- am-pagetitle -->
 <div class="am-mainpanel">
     <div class="am-pagebody">
@@ -21,103 +15,120 @@
             <h3 class="card-body-title">Bookings</h3>
 
             <div class="table-wrapper">
-                <table id="datatable1" class="table display responsive nowrap">
-                    <tr>
-                        <th>
-                            Booking Id
-                        </th>
+                <table id="example" class="display nowrap" style="width:100%">
+                    @*                    <table id="datatable1" class="table display responsive nowrap">*@
+                    <thead>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.Nights)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CheckIn)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CheckOut)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.RoomType)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.RoomNo)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Total)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserId)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Payment)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Confirm)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BookingId)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nights)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CheckIn)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CheckOut)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RoomType)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RoomNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Total)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserId)
-                            </td>
-                            <td>
-                                @if (item.Payment == "Online")
-                                {
-                                    <span>Received</span>
-                                }
-                                else
-                                {
-                                    @Html.ActionLink(item.Payment, "EditPayment", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-danger" })
-                                }
-                            </td>
-                            <td>
-                                @if (item.Confirm == "Not Confirm")
-                                {
-                                    @Html.ActionLink("Approve", "EditConfirm", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-warning" })
-                                    @*<span>Pending Approval</span>*@
-                                }
-                                else
-                                {
-                                    <span>Confirmed</span>
-                                }
-                                @*@Html.DisplayFor(modelItem => item.Confirm)*@
-                            </td>
-                            <td>
-                                @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |*@
-                                @*@Html.ActionLink("Details", "Details", new { id = item.BookingId }) |*@
-                                @Html.ActionLink("Delete", "Delete", new { id = item.BookingId })
-                            </td>
+                            <th>
+                                Booking Id
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nights)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CheckIn)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CheckOut)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RoomType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RoomNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Total)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Payment)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Confirm)
+                            </th>
+                            <th></th>
                         </tr>
-                    }
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BookingId)
+                                </td>
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nights)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CheckIn)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CheckOut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoomType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoomNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserId)
+                                </td>
+                                <td>
+                                    @if (item.Payment == "Online")
+                                    {
+                                        <span>Received</span>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(item.Payment, "EditPayment", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-danger" })
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Confirm == "Not Confirm")
+                                    {
+                                        @Html.ActionLink("Approve", "EditConfirm", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-warning" })
+                                        @*<span>Pending Approval</span>*@
+                                    }
+                                    else
+                                    {
+                                        <span>Confirmed</span>
+                                    }
+                                    @*@Html.DisplayFor(modelItem => item.Confirm)*@
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |*@
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.BookingId }) |*@
+                                    <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Delete", new { id = item.BookingId })"><i class="fa-solid fa-trash">  </i></a>
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.BookingId })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div><!-- table-wrapper -->
         </div><!-- card -->
 
 
     </div><!-- am-pagebody -->
+    @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+    }

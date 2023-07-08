@@ -22,13 +22,15 @@ namespace HManagement.Controllers
 			DateTime endDate = startDate.AddMonths(1).AddDays(-1);
 			//DateTime currentDay = DateTime.Now.Date;
 
-			//var user = Session["id"];
-			//var name = Se;
-			//var Co = HttpContext.Session.GetInt32("Co");
-			//var Dr = HttpContext.Session.GetInt32("Dr");
 			int Allcount = db.Bookings.Count(z => z.UserId != null);
 			int Allday = db.Bookings.Count(z => z.UserId != null && z.CheckIn == currentDate);
 			int Allmonth = db.Bookings.Count(z => z.UserId != null && z.CheckIn >= startDate && z.CheckIn <= endDate);
+			int single = db.Bookings.Count(z => z.RoomType == "Single");
+			int Double = db.Bookings.Count(z => z.RoomType == "Double");
+			int suite = db.Bookings.Count(z => z.RoomType == "Suite");
+			ViewBag.single = single;
+			ViewBag.Double = Double;
+			ViewBag.suite = suite;
 			ViewBag.SD = startDate;
 			ViewBag.ED = endDate;
 			ViewBag.count = Allcount;
@@ -38,7 +40,8 @@ namespace HManagement.Controllers
 
 
 			if (Convert.ToInt32(Session["R"]) != 0){
-				var bookings = db.Bookings.ToList();
+				//var bookings = db.Bookings.ToList();
+				var bookings = db.Bookings.OrderByDescending(b => b.BookingId).Take(7).ToList();
                 return View(bookings);
             }
             else

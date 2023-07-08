@@ -6,12 +6,6 @@
 }
 <div class="am-pagetitle">
     <h5 class="am-title">Users</h5>
-    <form id="searchBar" class="search-bar" action="index.html">
-        <div class="form-control-wrapper">
-            <input type="search" class="form-control bd-0" placeholder="Search...">
-        </div><!-- form-control-wrapper -->
-        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
-    </form><!-- search-bar -->
 </div><!-- am-pagetitle -->
 <div class="am-mainpanel">
     <div class="am-pagebody">
@@ -20,7 +14,9 @@
             <h3 class="card-body-title">Users</h3>
 
             <div class="table-wrapper">
-                <table class="table">
+                @*                <table class="table">*@
+                <table id="example" class="display nowrap" style="width:100%">
+                    <thead>
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.UName)
@@ -37,9 +33,10 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.Role)
                             </th>*@
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
-
+                    </thead>
+                    <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -66,9 +63,23 @@
                         </tr>
                     }
 
+                    </tbody>
                 </table>
             </div><!-- table-wrapper -->
         </div><!-- card -->
 
 
     </div><!-- am-pagebody -->
+    @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+    }

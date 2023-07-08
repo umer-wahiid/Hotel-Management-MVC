@@ -10,7 +10,7 @@
     <div class="container">
         <h2 style="margin-left:450px;">SignUp</h2>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myForm" }))
         {
             @Html.AntiForgeryToken()
 
@@ -28,7 +28,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.UEmail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control",type="email" } })
+                        @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control", id = "email-input" } })
+                        @*@Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control", pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$" } })*@
                         @Html.ValidationMessageFor(model => model.UEmail, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -62,6 +63,34 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('#myForm').validate({
+            rules: {
+                UEmail: {
+                    required: true,
+                    email: true,
+                    customEmail: true
+                }
+            },
+            messages: {
+                UEmail: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address",
+                    customEmail: "Please enter a valid email address"
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+
+        $.validator.addMethod("customEmail", function(value, element) {
+            return this.optional(element) || /\./.test(value);
+        }, "Please enter a valid email address");
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -18,3 +18,9 @@ Users...
 		If user selects online, It will make the payment status received
 		If user selects On Arrival, Payment status will pending
 	Can View Booking's Confirmation
+
+
+
+https://www.dicebear.com/styles/initials
+
+https://www.w3schools.com/js/tryit.asp?filename=tryai_chartjs_pie

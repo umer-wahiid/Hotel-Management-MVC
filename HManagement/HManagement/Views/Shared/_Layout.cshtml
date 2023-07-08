@@ -56,6 +56,8 @@
     @Styles.Render("~/Content/css/magnific-popup.css")
     @Styles.Render("~/Content/css/slicknav.min.css")
     @Styles.Render("~/Content/css/style.css")
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 </head>
 
@@ -130,13 +132,30 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="#" class="bk-btn">Booking Now</a>
+                            @*<a href="#" class="bk-btn">Book Now</a>*@
                             @if (Session["id"] != null)
                             {
+                                @Html.ActionLink("My Bookings", "Bookings", "Home", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;" })
+                                @*<div class="language-option">
+                                    <img src="~/Content/img/flag.jpg" alt="">
+                                    <span>EN <i class="fa fa-angle-down"></i></span>
+                                    <div class="flag-dropdown">
+                                        <ul>
+                                            <li><a href="#">Zi</a></li>
+                                            <li><a href="#">Fr</a></li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+
                                 <div class="language-option">
+                                    <img src="https://api.dicebear.com/6.x/initials/svg?seed=@Session["N"]" alt="">
                                     <span>@Session["N"]<i class="fa fa-angle-down"></i></span>
                                     <div class="flag-dropdown">
                                         <ul>
+                                            @if (Convert.ToInt32(Session["R"]) != 0)
+                                            {
+                                                <li>@Html.ActionLink("Dashboard", "Index", "Admins")</li>
+                                            }
                                             <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                                             <li>@Html.ActionLink("Edit", "Edit", "Users", new { id = Session["id"] }, null)</li>
                                         </ul>
@@ -145,9 +164,10 @@
                             }
                             @if (Session["id"] == null)
                             {
-                                <div class="language-option">
-                                    <span style="color:black;">@Html.ActionLink("Login", "Login", "Users" ,null, new { style = "color: black;" })</span>
-                                </div>
+                                @Html.ActionLink("Login", "Login", "Users", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;" })
+                                @*<div class="language-option">
+                <span style="color:black;">@Html.ActionLink("Login", "Login", "Users", null, new { style = "color: black;" })</span>
+            </div>*@
                             }
                         </div>
                     </div>
@@ -184,11 +204,11 @@
                                     </li>
                                     <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
                                     <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                                    @if (Session["id"] != null)
+                                    <li>@Html.ActionLink("Contact", "Create", "Contacts")</li>
+                                    @*@if (Session["id"] != null)
                                     {
                                         <li>@Html.ActionLink("My Bookings", "Bookings", "Home")</li>
-                                    }
+                                    }*@
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
@@ -327,6 +347,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>

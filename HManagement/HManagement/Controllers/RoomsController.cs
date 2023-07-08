@@ -94,7 +94,7 @@ namespace HManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoomId,RoomNo,RoomType,Capacity,Price,Availability")] Room room)
+        public ActionResult Edit([Bind(Include = "RoomId,RoomNo,RoomType,Capacity,Price,Availability,image_path")] Room room)
         {
             if (ModelState.IsValid)
             {

@@ -11,6 +11,7 @@ namespace HManagement.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         //public System.Data.Entity.DbSet<HManagement.Models.Booking> Bookings { get; set; }
     }

@@ -3,16 +3,11 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_admin.cshtml";
+    int serialNumber = 1;
 }
 
 <div class="am-pagetitle">
     <h5 class="am-title">Room List</h5>
-    <form id="searchBar" class="search-bar" action="index.html">
-        <div class="form-control-wrapper">
-            <input type="search" class="form-control bd-0" placeholder="Search...">
-        </div><!-- form-control-wrapper -->
-        <button id="searchBtn" class="btn btn-orange"><i class="fa fa-search"></i></button>
-    </form><!-- search-bar -->
 </div><!-- am-pagetitle -->
 <div class="am-mainpanel">
     <div class="am-pagebody">
@@ -21,9 +16,13 @@
             <h3 class="card-body-title">Rooms</h3>
 
             <div class="table-wrapper">
-                <table id="datatable1" class="table display responsive nowrap">
+                <table id="example" class="display nowrap" style="width:100%">
+                    @*                    <table id="datatable1" class="table display responsive nowrap">*@
                     <thead>
                         <tr>
+                            <th>
+                                S.No
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.RoomNo)
                             </th>
@@ -50,6 +49,9 @@
                         {
                             <tr>
                                 <td>
+                                    @serialNumber
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.RoomNo)
                                 </td>
                                 <td>
@@ -75,11 +77,15 @@
                                     }
                                 </td>
                                 <td>
-                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })*@
+                                    @*  @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |*@
+                                    <a style="margin-right:5px;color:#2d3a50;" href="@Url.Action("Edits", new { id = item.RoomId })"><i class="fa-solid fa-pen-to-square">  </i>  </a>    |
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.RoomId }) |*@
+                                    <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Details", new { id = item.RoomId })"><i class="fa-solid fa-circle-info">  </i>  </a>    |
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.RoomId })*@
+                                    <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Delete", new { id = item.RoomId })"><i class="fa-solid fa-trash">  </i></a>
                                 </td>
                             </tr>
+                            serialNumber++;
                         }
                     </tbody>
                 </table>
@@ -88,4 +94,16 @@
 
 
     </div><!-- am-pagebody -->
+    @section Scripts {
 
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+        }
