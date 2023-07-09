@@ -21,6 +21,9 @@ namespace HManagement.Models
         [StringLength(30)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        
+        [Required]
+        public bool status { get; set; }
 
         [Required]
         [MaxLength(600, ErrorMessage = "Max 600 Characters Allowed"), MinLength(8, ErrorMessage = "Min 8 Characters Allowed")]

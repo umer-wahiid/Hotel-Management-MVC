@@ -4,9 +4,14 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using HManagement.Models;
+using System.Net;
+using System.Net.Http;
+using System.Web.Mvc;
+using System.Linq;
 
 namespace HManagement.Controllers
 {
@@ -19,6 +24,15 @@ namespace HManagement.Controllers
         {
             return View(db.Contacts.ToList());
         }
+
+        [HttpGet]
+        public ActionResult GetContacts()
+        {
+            var contacts = db.Contacts.ToList(); // Replace with your contact retrieval logic
+
+            return Json(contacts, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Contacts/Details/5
         public ActionResult Details(int? id)

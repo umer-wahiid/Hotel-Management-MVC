@@ -179,6 +179,10 @@
     <Compile Include="Migrations\202307072112419_addContact.Designer.cs">
       <DependentUpon>202307072112419_addContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307091542459_addStatus.cs" />
+    <Compile Include="Migrations\202307091542459_addStatus.Designer.cs">
+      <DependentUpon>202307091542459_addStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -793,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307072112419_addContact.resx">
       <DependentUpon>202307072112419_addContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307091542459_addStatus.resx">
+      <DependentUpon>202307091542459_addStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
