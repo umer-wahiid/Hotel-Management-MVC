@@ -89,7 +89,7 @@
                                     }
                                     else
                                     {
-                                        @Html.ActionLink(item.Payment, "EditPayment", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-danger" })
+                                        @Html.ActionLink(item.Payment, "EditPayment", "Bookings", new { id = item.BookingId }, new { @class = "btn",style="color:red;margin-left:-12px;" })
                                     }
                                 </td>
                                 <td>
@@ -98,9 +98,14 @@
                                         @Html.ActionLink("Approve", "EditConfirm", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-warning" })
                                         @*<span>Pending Approval</span>*@
                                     }
-                                    else
+                                    else if(item.Confirm == "Confirmed")
                                     {
-                                        <span>Confirmed</span>
+                                        @Html.ActionLink("Checkout", "Checkout", "Bookings", new { id = item.BookingId }, new { @class = "btn btn-success" })
+                                        @*<span>Confirmed</span>*@
+                                    }
+                                    else if(item.Confirm == "Completed")
+                                    {
+                                        <span>Completed</span>
                                     }
                                     @*@Html.DisplayFor(modelItem => item.Confirm)*@
                                 </td>

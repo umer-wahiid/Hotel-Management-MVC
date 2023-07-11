@@ -18,10 +18,12 @@ namespace HManagement.Models
 
         [Required]
         [Display(Name = "Checkin Date")]
+        [DisplayFormat(DataFormatString = "{0:dd, MMMM yyyy}")]
         public DateTime CheckIn { get; set; }
         
         [Required]
         [Display(Name = "Checkout Date")]
+        [DisplayFormat(DataFormatString = "{0:dd, MMMM yyyy}")]
         public DateTime CheckOut { get; set; }
         
         [Required]

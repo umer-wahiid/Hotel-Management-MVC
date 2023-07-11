@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HManagement.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace HManagement.Controllers
 {
@@ -72,8 +73,13 @@ namespace HManagement.Controllers
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
+                
+                
+                var room = db.Rooms.Where(c => c.RoomNo == booking.RoomNo);
+                room.ForEach(c => c.Availability = "Unavailable");
+                db.SaveChanges();
+
                 return RedirectToAction("Bookings", "Home");
-                //return RedirectToAction("Index");
             }
 
             return View(booking);
@@ -167,6 +173,49 @@ namespace HManagement.Controllers
             }
             return HttpNotFound();
         }
+        
+        
+
+
+
+
+
+
+        // GET: Bookings/Delete/5
+        public ActionResult Checkout(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Checkout(int id)
+        {
+            var booking = db.Bookings.Find(id);
+            if (booking != null)
+            {
+                booking.Confirm = "Completed";
+                booking.Payment = "Online";
+                db.SaveChanges();
+
+
+                var room = db.Rooms.Where(c => c.RoomNo == booking.RoomNo);
+                room.ForEach(c => c.Availability = "Available");
+                db.SaveChanges();
+                
+                return RedirectToAction("Index");
+
+            }
+            return HttpNotFound();
+        }
 
 
 
@@ -199,6 +248,7 @@ namespace HManagement.Controllers
         }
 
         // POST: Bookings/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -206,6 +256,11 @@ namespace HManagement.Controllers
             Booking booking = db.Bookings.Find(id);
             db.Bookings.Remove(booking);
             db.SaveChanges();
+
+            var room = db.Rooms.Where(c => c.RoomNo == booking.RoomNo);
+            room.ForEach(c => c.Availability = "Available");
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

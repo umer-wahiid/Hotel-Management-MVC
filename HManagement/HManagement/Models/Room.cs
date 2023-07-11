@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HManagement.Models;
 
 namespace HManagement.Models
 {
@@ -14,6 +15,7 @@ namespace HManagement.Models
 
         [Required]
         [Display(Name = "Room Number")]
+        [UniqueRoomNo]
         public int RoomNo { get; set; }
 
         [Required]

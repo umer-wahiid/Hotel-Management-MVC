@@ -18,6 +18,17 @@
                     </div>
                 </div>
             </div>
+            <div class="row tab-row ml-1" >
+                <div class="tab p-3 border mr-2">
+                    @Html.ActionLink("Single", "Room", "Home", new { rm = "Single" }, new { style = "color: Black;" })
+                </div>
+                <div class="tab p-3 border mr-2">
+                    @Html.ActionLink("Double", "Room", "Home", new { rm = "Double" }, new { style = "color: Black;" })
+                </div>
+                <div class="tab p-3 border mr-2">
+                    @Html.ActionLink("Suite", "Room", "Home", new { rm = "Suite" }, new { style = "color: Black;" })
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -47,10 +58,6 @@
                                     <tr>
                                         <td class="r-o">Bed:</td>
                                         <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
                                     </tr>
                                 </tbody>
                             </table>

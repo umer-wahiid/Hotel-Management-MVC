@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using HManagement.Models;
+using Microsoft.Ajax.Utilities;
 using System.Net;
 using System.Net.Http;
 using System.Web.Mvc;
@@ -28,9 +29,24 @@ namespace HManagement.Controllers
         [HttpGet]
         public ActionResult GetContacts()
         {
-            var contacts = db.Contacts.ToList(); // Replace with your contact retrieval logic
+            var contacts = db.Contacts.Where(a=>a.status==false).ToList(); // Replace with your contact retrieval logic
 
             return Json(contacts, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Read()
+        {
+            // Get all rows where status is false.
+            var contacts = db.Contacts.Where(c => c.status == false);
+
+            // Update the status of all rows to true.
+            contacts.ForEach(c => c.status = true);
+
+            // Save the changes to the database.
+            db.SaveChanges();
+            return Json(new { success = true, message = "Form submitted successfully!" });
+            //return RedirectToAction("Index","Admins");
         }
 
 

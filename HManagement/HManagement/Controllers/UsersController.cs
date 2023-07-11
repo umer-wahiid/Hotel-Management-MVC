@@ -84,7 +84,7 @@ namespace HManagement.Controllers
                 User use = HC.Users.Where(c => c.UEmail == user.UEmail).FirstOrDefault();
                 if (use.Role == 0)
                 {
-                    TempData["wel"] = "<script>alert('Welcome !!')</script>";
+                    //TempData["wel"] = "<script>alert('Welcome !!')</script>";
                     Session["id"] = use.UserId;
                     Session["N"] = use.UName;
                     Session["E"] = use.UEmail;
@@ -93,7 +93,7 @@ namespace HManagement.Controllers
                 }
                 else
                 {
-                    TempData["wel"] = "<script>alert('Welcome !!')</script>";
+                    //TempData["wel"] = "<script>alert('Welcome !!')</script>";
                     Session["id"] = use.UserId;
                     Session["N"] = use.UName;
                     Session["E"] = use.UEmail;
@@ -103,7 +103,7 @@ namespace HManagement.Controllers
             }
             else
             {
-                TempData["error"] = "<script>alert('Wrong Credentials !!')</script>";
+                TempData["error"] = "Wrong Credentials !!";
                 return View();
             }
         }

@@ -26,7 +26,8 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Message)
                         </th>
-                        <th></th>
+                        <th>Image</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,10 +44,13 @@
                                 @Html.DisplayFor(modelItem => item.Message)
                             </td>
                             <td>
+                                <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=@item.UName" class="rounded-circle" height="40" width="40">
+                            </td>
+                            <td>
                                 @*  @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |*@
-                                <a style="margin-right:5px;color:#2d3a50;" href="@Url.Action("Edits", new { id = item.ContactId })"><i class="fa-solid fa-pen-to-square">  </i>  </a>    |
+                                @*<a style="margin-right:5px;color:#2d3a50;" href="@Url.Action("Edits", new { id = item.ContactId })"><i class="fa-solid fa-pen-to-square">  </i>  </a>*@    
                                 @*@Html.ActionLink("Details", "Details", new { id = item.RoomId }) |*@
-                                <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Details", new { id = item.ContactId})"><i class="fa-solid fa-circle-info">  </i>  </a>    |
+                                @*<a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Details", new { id = item.ContactId})"><i class="fa-solid fa-circle-info">  </i>  </a>*@    
                                 @*@Html.ActionLink("Delete", "Delete", new { id = item.RoomId })*@
                                 <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Delete", new { id = item.ContactId })"><i class="fa-solid fa-trash">  </i></a>
                             </td>

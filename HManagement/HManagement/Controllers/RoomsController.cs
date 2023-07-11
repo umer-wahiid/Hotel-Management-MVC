@@ -56,23 +56,15 @@ namespace HManagement.Controllers
             room.image_path = "~/Content/images/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Content/images/"), fileName);
             room.ImageFile.SaveAs(fileName);
-            db.Rooms.Add(room);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.Rooms.Add(room);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+            }
 
-
-
-
-
-            //if (ModelState.IsValid)
-            //{
-            //    db.Rooms.Add(room);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            //return View(room);
-        }
 
         // GET: Rooms/Edit/5
         public ActionResult Edit(int? id)
@@ -125,10 +117,16 @@ namespace HManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            
             Room room = db.Rooms.Find(id);
             db.Rooms.Remove(room);
             db.SaveChanges();
+
+            var bookingsToRemove = db.Bookings.Where(b => b.RoomNo == room.RoomNo);
+            db.Bookings.RemoveRange(bookingsToRemove);
+            db.SaveChanges();
             return RedirectToAction("Index");
+
         }
         
         // GET: Rooms/Delete/5

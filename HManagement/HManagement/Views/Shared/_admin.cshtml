@@ -1,6 +1,7 @@
 ﻿@{
     Response.Cache.SetCacheability(HttpCacheability.NoCache);
     Response.Cache.SetNoStore();
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
     <meta name="author" content="ThemePixels">
 
 
-    <title>Admin's Dashboard</title>
+    <title>Admin - @ViewBag.Title</title>
     <!-- vendor css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @Styles.Render("~/Content/Admin/lib/font-awesome/css/font-awesome.css")
@@ -61,17 +62,20 @@
                 <a href="" id="abcd" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
                     <i class="icon ion-ios-email-outline tx-24"></i>
                     <!-- start: if statement -->
-                    <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
-                    <!-- end: if statement -->
+                    <div id="dott">
+                    <span id="dot" class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
+    </div>                
+    <!-- end: if statement -->
                 </a>
                 <div class="dropdown-menu wd-300 pd-0-force">
                     <div class="dropdown-menu-header">
                         <label>Notifications</label>
-                        <a href="">Mark All as Read</a>
+                        <a id="read" href="">Mark All as Read</a>
                     </div><!-- d-flex -->
 
-                    <div id="contactsContainer" class="media-list">
-                        <a href="#" class="media-list-link read" id="contactsLink">
+                    <div class="media-list">
+                    <div id="contactsContainer">    
+                    <a href="#" class="media-list-link read" id="contactsLink">
                             <div class="media pd-x-20 pd-y-15">
                                 <img src="~/Content/Admin/img/img8.jpg" class="wd-40 rounded-circle" alt="">
                                 <div class="media-body">
@@ -80,50 +84,10 @@
                                 </div>
                             </div><!-- media -->
                         </a>
-                        <!-- loop starts here -->
-                        <!--<a href="" class="media-list-link read">
-        <div class="media pd-x-20 pd-y-15">
-            <img src="~/Content/Admin/img/img8.jpg" class="wd-40 rounded-circle" alt="">
-            <div class="media-body">
-                <p class="tx-13 mg-b-0"><strong class="tx-medium">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                <span class="tx-12">October 03, 2017 8:45am</span>
-            </div>
-        </div>-->
-                        <!-- media -->
-                        <!--</a>-->
-                        <!-- loop ends here -->
-                        @*<a href="" class="media-list-link read">
-        <div class="media pd-x-20 pd-y-15">
-            <img src="~/Content/Admin/img/img9.jpg" class="wd-40 rounded-circle" alt="">
-            <div class="media-body">
-                <p class="tx-13 mg-b-0"><strong class="tx-medium">Mellisa Brown</strong> appreciated your work <strong class="tx-medium">The Social Network</strong></p>
-                <span class="tx-12">October 02, 2017 12:44am</span>
-            </div>
-        </div>
-                         media 
-                        </a>
-    <a href="" class="media-list-link read">
-        <div class="media pd-x-20 pd-y-15">
-            <img src="~/Content/Admin/img/img10.jpg" class="wd-40 rounded-circle" alt="">
-            <div class="media-body">
-                <p class="tx-13 mg-b-0">20+ new items added are for sale in your <strong class="tx-medium">Sale Group</strong></p>
-                <span class="tx-12">October 01, 2017 10:20pm</span>
-            </div>
-        </div>*@
-                        <!-- media -->
-                        <!--</a>
-    <a href="" class="media-list-link read">
-        <div class="media pd-x-20 pd-y-15">
-            <img src="~/Content/Admin/img/img5.jpg" class="wd-40 rounded-circle" alt="">
-            <div class="media-body">
-                <p class="tx-13 mg-b-0"><strong class="tx-medium">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium">Ronnie Mara</strong></p>
-                <span class="tx-12">October 01, 2017 6:08pm</span>
-            </div>
-        </div>-->
-                        <!-- media -->
+                    </div>    
                         <!--</a>-->
                         <div class="media-list-footer">
-                            <a href="" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a>
+                            <a href="/Contacts/Index/" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a>
                         </div>
                     </div><!-- media-list -->
                 </div><!-- dropdown-menu -->
@@ -348,7 +312,7 @@
                     <button class="btn btn-secondary"><i class="fa fa-search"></i></button>
                 </div><!-- chat-search-bar -->
 
-                <label class="pd-x-15 tx-uppercase tx-11 mg-t-20 tx-orange mg-b-10 tx-medium">Recent Chat History</label>
+                <label class="pd-x-15 tx-uppercase tx-11 mg-t-20 tx-orange mg-b-10 tx-medium">Recent Messages</label>
                 <div class="list-group list-group-chat">
                     <a href="#" class="list-group-item">
                         <div class="d-flex align-items-center">
@@ -485,6 +449,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //$("#abcd").click(function () {
+
+            $.ajax({
+                url: "/Contacts/GetContacts", // Replace with the appropriate controller and action URL
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    // Iterate through the retrieved contacts and populate the HTML dynamically
+                    var html = "";
+                    data.forEach(function (contact) {
+                        html += '<a href="#" class="media-list-link read">';
+                        html += '<div class="media pd-x-20 pd-y-15">';
+                        html += '<img src="https://api.dicebear.com/6.x/pixel-art/svg?seed='+contact.UName+'" class="wd-40 rounded-circle" alt="">';
+                        html += '<div class="media-body">';
+                        html += '<p class="tx-13 mg-b-0" style="text-overflow: ellipsis;white-space: nowrap;display: block;overflow: hidden;width: 17em;"><strong class="tx-medium">' + contact.UName + '</strong>'+'    ' + contact.Message + '</p>';
+                        html += '<span class="tx-12">' + contact.Email + '</span>';
+                        html += '</div></div><!-- media --></a>';
+                    });
+                    // Append the generated HTML to the contacts link container
+                    $('#contactsContainer').html(html);
+                    if (html.length == 0) {
+                        var abc = '<span id="dot" hidden class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>';
+                        $('#dott').html(abc);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            //});
+            });
+        });
+
+
+
+
+
+        $("#read").click(function () {
+            $.post({
+                url: '@Url.Action("Read", "Contacts")',
+                //async:true,
+              success: function(response) {
+                  console.log("Form submission Success: " + response.message);
+                  //window.location.href = '@Url.Action("Index", "Admins")';
+
+              },
+              error: function(xhr, status, error) {
+                  console.log("An error occurred during form submission: " + error);
+              }
+            });
+        });
+    </script>
     @Scripts.Render("~/Content/Admin/lib/popper.js/popper.js")
     @Scripts.Render("~/Content/Admin/lib/bootstrap/bootstrap.js")
     @Scripts.Render("~/Content/Admin/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js")
@@ -501,41 +520,6 @@
     @Scripts.Render("~/Content/Admin/js/ResizeSensor.js")
     @Scripts.Render("~/Content/Admin/js/dashboard.js")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#abcd").click(function () {
-
-            $.ajax({
-                url: "/Contacts/GetContacts", // Replace with the appropriate controller and action URL
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data)
-                    // Iterate through the retrieved contacts and populate the HTML dynamically
-                    var html = "";
-                    data.forEach(function (contact) {
-                        html += '<a href="#" class="media-list-link read">';
-                        html += '<div class="media pd-x-20 pd-y-15">';
-                        html += '<img src="' + contact.ImageUrl + '" class="wd-40 rounded-circle" alt="">';
-                        html += '<div class="media-body">';
-                        html += '<p class="tx-13 mg-b-0"><strong class="tx-medium">' + contact.UName + '</strong>' + contact.Message + '</p>';
-                        html += '<span class="tx-12">' + contact.Email + '</span>';
-                        html += '</div></div><!-- media --></a>';
-                    });
-
-                    // Append the generated HTML to the contacts link container
-                    $('#contactsContainer').html(html);
-                    //$('#contactsLink').after(html);
-                },
-                error: function (xhr, status, error) {
-                    console.log(error);
-                }
-            });
-            });
-        });
-    </script>
 
 
     @RenderSection("scripts", required: false)

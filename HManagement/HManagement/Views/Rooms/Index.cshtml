@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HManagement.Models.Room>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Room's List";
     Layout = "~/Views/Shared/_admin.cshtml";
     int serialNumber = 1;
 }
@@ -69,16 +69,16 @@
                                 <td>
                                     @if (item.Availability == "Available")
                                     {
-                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "btn btn-warning" })
+                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "", style = "color:Black;margin-left:-12px;" })
                                     }
                                     else
                                     {
-                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "btn btn-danger" })
+                                        @Html.ActionLink(item.Availability, "EditAvailability", "Rooms", new { id = item.RoomId }, new { @class = "", style = "color:red;margin-left:-12px;" })
                                     }
                                 </td>
                                 <td>
                                     @*  @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |*@
-                                    <a style="margin-right:5px;color:#2d3a50;" href="@Url.Action("Edits", new { id = item.RoomId })"><i class="fa-solid fa-pen-to-square">  </i>  </a>    |
+                                    @*<a style="margin-right:5px;color:#2d3a50;" href="@Url.Action("Edits", new { id = item.RoomId })"><i class="fa-solid fa-pen-to-square">  </i>  </a>    |*@
                                     @*@Html.ActionLink("Details", "Details", new { id = item.RoomId }) |*@
                                     <a style="margin-left:5px;margin-right:5px;color:#2d3a50;" href="@Url.Action("Details", new { id = item.RoomId })"><i class="fa-solid fa-circle-info">  </i>  </a>    |
                                     @*@Html.ActionLink("Delete", "Delete", new { id = item.RoomId })*@

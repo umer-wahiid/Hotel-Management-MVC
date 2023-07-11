@@ -56,17 +56,29 @@
                             <tbody>
                                 <tr>
                                     <td class="r-o">Check In:</td>
-                                    <td>@item.CheckIn.ToString("dd-MM-yyyy")</td>
+                                    <td>@item.CheckIn</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Check Out:</td>
-                                    <td>@item.CheckOut.ToString("dd-MM-yyyy")</td>
+                                    <td>@item.CheckOut</td>
                                 </tr>
                             </tbody>
                         </table>
                         @if (item.Confirm == "Not Confirm")
                         {
-                    <h6>Status :  Pending                @Html.ActionLink("Cancel", "Bookings", "Home", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;margin-left:20px;margin-bottom:5px;" })</h6>
+                    <h6>
+                        Status :  Pending
+
+                        @using (Html.BeginForm("Delete", "Bookings", new { id = @item.BookingId }, FormMethod.Post))
+                        {
+                    @Html.AntiForgeryToken()
+
+                                            <input type="submit" value="Cancel" class="btn btn-default" style="display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;margin-left:20px;margin-bottom:5px;" />}
+                        @*@Html.ActionLink("Cancel", "Delete", "Bookings", null, new { style = "display: inline-block;font-size: 13px;font-weight: 700;padding: 16px 28px 15px;background: #dfa974;color: #ffffff;text-transform: uppercase;letter-spacing: 2px;margin-left:20px;margin-bottom:5px;" })*@
+
+                    </h6>
+                        
+                        
                         }
                         else
                         {

@@ -157,7 +157,7 @@
                                                 <li>@Html.ActionLink("Dashboard", "Index", "Admins")</li>
                                             }
                                             <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
-                                            <li>@Html.ActionLink("Edit", "Edit", "Users", new { id = Session["id"] }, null)</li>
+                                            @*<li>@Html.ActionLink("Edit", "Edit", "Users", new { id = Session["id"] }, null)</li>*@
                                         </ul>
                                     </div>
                                 </div>
@@ -332,10 +332,7 @@
                 $('#input3').val(result);
                 //console.log(result);
             });
-        });
 
-
-        $(document).ready(function () {
             $('#startDate').on('change', function () {
                 var value2 = parseFloat($('#input2').val());
                 var startDate = new Date($('#startDate').val());
@@ -346,6 +343,8 @@
                 $('#endDate').val(endDateString);
             });
         });
+
+
     </script>
 
 </body>

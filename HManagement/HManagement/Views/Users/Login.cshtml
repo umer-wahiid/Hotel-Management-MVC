@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V16</title>
+    <title>Sona-Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1
 
@@ -38,11 +38,11 @@
         <div class="container-login100" style="background-image: url('/Content/Login/images/bg-01.jpg'); ">
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
-                    Account Login
+                    Login To Sona
                 </span>
-                @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "login100-form validate-form p-b-33 p-t-5" }))
+                @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "login100-form validate-form p-b-33 p-t-5", id = "myForm" }))
                 {
-                    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
                     <div class="wrap-input100 validate-input" data-validate="Enter Email">
                         @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "input100", name = "UEmail", type = "email", placeholder = "Your Email" } })
@@ -52,20 +52,22 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Enter Email">
                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input100", name = "Pass", type = "password", placeholder = "Your Password" } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         <span class="focus-input100" data-placeholder="&#xe82a;"></span>
-                    </div>
-
-                    <div class="container-login100-form-btn m-t-32">
-                        <button type="submit" class="login100-form-btn">Login</button>
-                    </div>
-
-                }
-
-                <P>Don't Have An Account ?  @Html.ActionLink("Register", "SignUp", "Users")</P>
-
+                        <span style="color:red;margin-left:40px;">@TempData["error"]</span>
                 <!-- Display error messages -->
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    </div>
+
+                                                    <div class="container-login100-form-btn m-t-32">
+                                                        <button type="submit" class="login100-form-btn">Login</button>
+                                                    </div>
+                <div class="container-login100-form-btn m-t-32">
+                <P>Don't Have An Account ?  @Html.ActionLink("Register", "SignUp", "Users")</P>
+                                                    </div>
+
+                                                    }
+
             </div>
         </div>
     </div>
@@ -89,7 +91,33 @@
     <script src="~/Content/Login/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/Content/Login/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    UEmail: {
+                        required: true,
+                        email: true,
+                        customEmail: true
+                    }
+                },
+                messages: {
+                    UEmail: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email address",
+                        customEmail: "Please enter a valid email address"
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
 
+            $.validator.addMethod("customEmail", function (value, element) {
+                return this.optional(element) || /\./.test(value);
+            }, "Please enter a valid email address");
+        });
+    </script>
 </body>
 </html>
 
